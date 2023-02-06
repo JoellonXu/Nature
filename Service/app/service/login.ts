@@ -1,9 +1,10 @@
 import {Service} from "egg";
 
 export  default  class Login extends Service {
-    public async userLogin(){
+    public async userLogin(id){
         return {
-            login: true
+            login: true,
+            id: id
         }
     }
 }

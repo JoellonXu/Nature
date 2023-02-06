@@ -1,10 +1,12 @@
 import {Form, Input, Checkbox, Button } from "antd";
 import { NavLink} from "react-router-dom";
+import axios from "axios";
 
 
 export  default  function Login(){
     const submit = (value:any)=>{
         console.log(value)
+        axios.post('/api/login')
     }
     return (
         <div>

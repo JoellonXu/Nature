@@ -10,7 +10,8 @@ function App() {
     const GetRoutes = () => {
         const routes = useRoutes([{
             path:'/home',
-            element: <Home/>
+            element: <Home/>,
+            auth: false
         },{
             path:'/login',
             element: <Login/>
