@@ -4,9 +4,10 @@ import axios from "axios";
 
 
 export  default  function Login(){
+    axios.defaults.baseURL = 'http://127.0.0.1:7001/api'
     const submit = (value:any)=>{
         console.log(value)
-        axios.post('/api/login')
+        axios.post('/login')
     }
     return (
         <div>
