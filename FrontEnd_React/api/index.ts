@@ -1,1 +1,0 @@
-import delete from './apis/delete'
