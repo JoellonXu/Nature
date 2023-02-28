@@ -14,6 +14,11 @@ module.exports = merge(baseConfig, {
         // 解决路由跳转404问题
         historyApiFallback: true,
         hot: true,
+        proxy: {
+          '/api': {
+              target: 'http://127.0.0.1:7001',
+          }
+        },
         static: { //托管静态资源文件
             directory: path.join(__dirname, "../public"),
         }
