@@ -4,7 +4,7 @@ import {Routes, Route} from "react-router-dom";
 import Login from "@/view/Login/Login";
 import NotFound from "@/view/NotFound";
 import Home from "@/view/Home";
-
+import GlobalStyled from "./style"
 function App() {
     return (
         <div className='APP'>

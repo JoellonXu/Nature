@@ -86,7 +86,8 @@ module.exports = {
     resolve: {
         extensions: ['.js', '.tsx', '.ts'],
         alias: {
-            '@': path.resolve(__dirname, '../src')
+            '@': path.resolve(__dirname, '../src'),
+            process: "process/browser"
         },
         modules: [path.resolve(__dirname, '../node_modules')],
     },
@@ -98,6 +99,9 @@ module.exports = {
         new webpack.DefinePlugin({
             'process.env.BASE_ENV': JSON.stringify(process.env.BASE_ENV)
         }),
+        new webpack.ProvidePlugin({
+            process: 'process/browser',
+     }),
     ],
     // 开启webpack持久化存储缓存
     cache: {
