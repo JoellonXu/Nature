@@ -1,7 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Article from '@/component/Article'
+import axios from "axios";
 
 const SocialCircle : React.FC = () => {
+     axios.post('api/articleList').then((res)=>{
+        console.log(res)
+     })
+  useEffect(()=>{
+       
+
+
+  })
     return (
         <div>社交圈
             <div> 

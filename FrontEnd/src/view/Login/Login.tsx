@@ -7,11 +7,21 @@ export default function Login(props){
     const navigate = useNavigate()
 const onFinish = (value:any)=>{
     console.log(value)
-    axios.get('api/login').then((res)=>{
+    axios.get('api/login', {
+        params: {
+            accountNumber: value.userName,
+            password: value.password
+        }
+    }).then((res)=>{
+        // if(res.error === 0){
+        //     if(res.res.login){
+        //         navigate('/home')
+        // }}
         if(res.status === 200){
-            if(res.data.login){
-                navigate('/home')
-        }}
+            if(res.data.error === 0){
+                 
+            }
+        }
     })
     }
 

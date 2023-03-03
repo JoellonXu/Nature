@@ -3,8 +3,7 @@ import {Controller} from "egg";
 export default class LoginController extends Controller {
     public async userLogin() {
         const { ctx } = this
-        let { id } = ctx.request.body
-        ctx.body = await ctx.service.login.userLogin(id)
+        ctx.body = await ctx.service.login.userLogin(ctx.query)
     }
     async getParam(){
         // const { ctx } = this
