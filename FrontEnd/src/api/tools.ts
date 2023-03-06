@@ -56,7 +56,7 @@ export const handleAuthError = (errno: string): boolean => {
 };
 
 export const handleGeneralError = (errno: string, errmsg: string): boolean => {
-  if (errno !== "0") {
+  if (errno != "0") {
     message.error(errmsg);
     return false;
   }

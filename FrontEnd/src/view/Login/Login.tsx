@@ -1,27 +1,25 @@
 import {Form, Button, Input, Checkbox} from "antd";
 import axios from "axios";
+import {Get} from "@/api/server"
 import React from "react";
 import {NavLink, useNavigate} from "react-router-dom";
+import {useSelector, useDispatch} from "react-redux"
+import { setToken } from "@/store/features/counterSlice";
 
 export default function Login(props){
     const navigate = useNavigate()
-const onFinish = (value:any)=>{
+    const {value} = useSelector((store)=> store.counter)
+    const dispatch = useDispatch()
+    const onFinish = (value:any)=>{
     console.log(value)
-    axios.get('api/login', {
-        params: {
+    Get('api/login', {
             accountNumber: value.userName,
             password: value.password
-        }
     }).then((res)=>{
-        // if(res.error === 0){
-        //     if(res.res.login){
-        //         navigate('/home')
-        // }}
-        if(res.status === 200){
-            if(res.data.error === 0){
-                 
-            }
-        }
+      if(res.errno === 0 && res.res.token){
+       dispatch(setToken({value: res.res.token}))
+       navigate('/home')
+      }   
     })
     }
 

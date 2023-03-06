@@ -3,7 +3,7 @@ import {Service} from "egg"
 export default class articleList extends Service {
     public async articleList(){
         return {
-            error: 0,
+            errno: 0,
             req: {},
             res:[
                 {

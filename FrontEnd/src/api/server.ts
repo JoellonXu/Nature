@@ -15,9 +15,9 @@ interface IAnyObj {
 }
 
 interface FcResponse<T> {
-  errno: string;
+  errno: number;
   errmsg: string;
-  data: T;
+  res: object;
 }
 
 axios.interceptors.request.use((config) => {
@@ -43,7 +43,7 @@ export const Get = <T,>(
   url: string,
   params: IAnyObj = {},
   clearFn?: Fn
-): Promise<[any, FcResponse<T> | undefined]> =>
+): Promise<FcResponse<T> | undefined> =>
   new Promise((resolve) => {
     axios
       .get(url, { params })
@@ -54,10 +54,10 @@ export const Get = <T,>(
         } else {
           res = result.data as FcResponse<T>;
         }
-        resolve([null, res as FcResponse<T>]);
+        resolve(res as FcResponse<T>);
       })
       .catch((err) => {
-        resolve([err, undefined]);
+        resolve(err);
       });
   });
 

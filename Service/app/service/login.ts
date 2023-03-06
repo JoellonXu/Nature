@@ -5,7 +5,7 @@ export  default  class Login extends Service {
         const {accountNumber, password} = query
        if(accountNumber === 'admin' && password === '123456'){
         return {
-            error: 0,
+            errno: 0,
             req: query,
             res:{
                 isLogin: true,
@@ -15,8 +15,9 @@ export  default  class Login extends Service {
         }
        } else {
         return {
-            error: 1,
+            errno: 1,
             req: query,
+            errmsg: '登陆失败',
             res: {
                 isLogin: false
             }
