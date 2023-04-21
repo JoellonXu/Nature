@@ -1,4 +1,4 @@
-import { Get } from "../server";
+import { Get, Post } from "../server";
 
 export interface FcResponse<T> {
   errno: string;
@@ -12,6 +12,10 @@ export function getUserInfo<T = { name: string }>(id: string): ApiResponse<T> {
   return Get<T>("/user/info", { id });
 }
 
+export function getTreeDataList(){
+  return Post('/api/treeDataList', {})
+}
 export const userApi = {
   getUserInfo,
+  getTreeDataList
 };

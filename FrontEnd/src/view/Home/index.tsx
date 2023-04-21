@@ -1,20 +1,28 @@
 import React from "react";
 import {Tabs} from 'antd'
 import SocialCircle from "@/view/SocialCircle";
+import TreeOrgination from "@/view/TreeOrgination";
 const Home: React.FC = () => {
     return (
         <div>
             <Tabs
                 defaultActiveKey="1"
                 centered
-                items={new Array(3).fill(null).map((_, i) => {
-                    const id = String(i + 1);
-                    return {
-                        label: `Tab ${id}`,
-                        key: id,
-                        children: <SocialCircle/>,
-                    };
-                })}
+                items={[{
+                        label: 'article组件',
+                        key: '1',
+                        children: <TreeOrgination/>
+                    },
+                    {
+                        label: '优化树',
+                        key: '2',
+                        children: <TreeOrgination/>
+                    },
+                    {
+                        label: 'article组件',
+                        key: '3',
+                        children: <SocialCircle/>
+                    }]}
             />
         </div>
     )
