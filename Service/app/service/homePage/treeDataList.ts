@@ -2,30 +2,15 @@ import { Service } from "egg"
 
 export default class treeDataList extends Service {
     public async treeDataList() {
-
-        const listData = []
-        const obj = {
-            title: '组织架构',
-            key:  '0-0',
-            children: []
+        const data:string[] = []
+        for(let i = 0;i<10000;i++){
+         data.push(`第${i}条数据`)
         }
-        for(let i = 0;i<2000;i++){
-
-        const  childrenObj = {}
-                //@ts-ignore    
-            childrenObj.title = `index${i}`
-           //@ts-ignore
-             childrenObj.key = `0-0-${i}`
-            //@ts-ignore
-            listData.push(childrenObj)
-        }
-             //@ts-ignore
-        obj.children = listData
 
         return {
             errno: 0,
             req: {},
-            res: [obj]
+            res: data
         }
     }
 }
