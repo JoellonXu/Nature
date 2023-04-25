@@ -1,6 +1,6 @@
 function _debounce(func: Function, time: number) {
     //定义变量接受计时器，函数执行结果
-    var timeout: string | number | NodeJS.Timeout | undefined, result: any
+    var timeout: any, result: any
     //返回出函数形成闭包
     return function () {
         let that = this

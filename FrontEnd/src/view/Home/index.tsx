@@ -2,6 +2,7 @@ import React from "react";
 import {Tabs} from 'antd'
 import SocialCircle from "@/view/SocialCircle";
 import TreeOrgination from "@/view/TreeOrgination";
+import Drag from "@/component/Drag";
 const Home: React.FC = () => {
     return (
         <div>
@@ -9,14 +10,14 @@ const Home: React.FC = () => {
                 defaultActiveKey="1"
                 centered
                 items={[{
-                        label: 'article组件',
+                        label: '虚拟列表',
                         key: '1',
                         children: <TreeOrgination/>
                     },
                     {
-                        label: '优化树',
+                        label: '日历组件',
                         key: '2',
-                        children: <TreeOrgination/>
+                        children: <Drag/>
                     },
                     {
                         label: 'article组件',
