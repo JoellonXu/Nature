@@ -6,7 +6,7 @@ import { Button } from "antd";
 
 const ModalDialog: React.FC = (props) => {
 
-    const { isShow } = props
+    const { title, content,  type } = props
     const [isOpen, setIsOpen ] = useState(false)
   const Dialog = styled.div`
     position: absolute;
@@ -27,13 +27,12 @@ const ModalDialog: React.FC = (props) => {
 
   const modalContent = (
     <Dialog>
-      <div className="dialog-title">我是标题</div>
-      <div className="dialog-contaoner">我是内容区域</div>
+      <div className="dialog-title">{title}</div>
+      <div className="dialog-contaoner">{content}</div>
       <div className="dialog-foooter"><Button>关闭</Button></div>
     </Dialog>
   );
-  debugger
-  return isOpen ?  (createPortal(modalContent, document.getElementById("root"))) : null
+  return createPortal(modalContent, document.getElementById("root"))
 };
 
 export default ModalDialog;
