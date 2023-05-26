@@ -11,14 +11,11 @@ const SocialCircle: React.FC = () => {
   const [isModalShow, setIsModalShow ] = useState(false)
 
   const modalClick = () => {
-    ModalDialog(()=>({
+    ModalDialog.show({
       title:"弹窗测试",
       content: (<div>我是一个测试弹窗大大大还好好的还好好的</div>),
       type:"success"
-    }))
-    // ModalDialog({
-      
-    // })
+    })
   }
   return (
     <div>

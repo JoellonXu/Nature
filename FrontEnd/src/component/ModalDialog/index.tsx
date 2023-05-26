@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import styled, { css } from "styled-components";
-import { createPortal } from "react-dom";
+import ReactDOM, { createPortal } from "react-dom";
 import { Button } from "antd";
+import Modal from "antd/es/modal/Modal";
 
-const ModalDialog: React.FC = (props) => {
-
-    const { title, content,  type } = props
-    const [isOpen, setIsOpen ] = useState(false)
+// function ModalDialog(props: any){ 
   const Dialog = styled.div`
     position: absolute;
     padding: 20px;
@@ -24,15 +22,26 @@ const ModalDialog: React.FC = (props) => {
       color: red;
     }
   `;
-
   const modalContent = (
     <Dialog>
-      <div className="dialog-title">{title}</div>
-      <div className="dialog-contaoner">{content}</div>
+      <div className="dialog-title">111111</div>
+      <div className="dialog-contaoner">22222</div>
       <div className="dialog-foooter"><Button>关闭</Button></div>
     </Dialog>
   );
-  return createPortal(modalContent, document.getElementById("root"))
-};
+  // ReactDOM.createPortal(modalContent, document.getElementById("root"))
+// };
+interface Modal  {
+  show: Function
+}
+const ModalDialog = {}
+ModalDialog.show = (values: any) => {
+ console.log('values', values)
+ const newContainer = React.createElement('div', null, modalContent)
+ debugger
+ document.body.appendChild(newContainer)
+// ReactDOM.createPortal(newContainer, document.getElementById('root'))
+// return createPortal(<div>111111111111</div>, newContainer)
+}
 
 export default ModalDialog;
