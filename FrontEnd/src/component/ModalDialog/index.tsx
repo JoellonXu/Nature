@@ -22,11 +22,18 @@ import Modal from "antd/es/modal/Modal";
       color: red;
     }
   `;
+  const close = () => {
+      const parent = document.body
+      const modals = document.querySelector('.dialog-modal')
+      console.log('关闭按钮', modals)
+      // modals.length = 0
+      parent.removeChild(modals)
+  }
   const modalContent = (
-    <Dialog>
+    <Dialog className="dialog-modal">
       <div className="dialog-title">111111</div>
       <div className="dialog-contaoner">22222</div>
-      <div className="dialog-foooter"><Button>关闭</Button></div>
+      <div className="dialog-foooter"><Button onClick={close}>关闭</Button></div>
     </Dialog>
   );
   // ReactDOM.createPortal(modalContent, document.getElementById("root"))
@@ -37,10 +44,8 @@ interface Modal  {
 const ModalDialog = {}
 ModalDialog.show = (values: any) => {
  console.log('values', values)
- const newContainer = React.createElement('div', null, modalContent)
- debugger
- document.body.appendChild(newContainer)
-// ReactDOM.createPortal(newContainer, document.getElementById('root'))
+ const newContainer = document.getElementById('root')
+ ReactDOM.render(modalContent, newContainer)
 // return createPortal(<div>111111111111</div>, newContainer)
 }
 
