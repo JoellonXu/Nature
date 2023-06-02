@@ -3,9 +3,6 @@ import { useEffect } from "react";
 import styled, { css } from "styled-components";
 import ReactDOM, { createPortal } from "react-dom";
 import { Button } from "antd";
-import Modal from "antd/es/modal/Modal";
-
-// function ModalDialog(props: any){ 
   const Dialog = styled.div`
     position: absolute;
     padding: 20px;
@@ -21,32 +18,39 @@ import Modal from "antd/es/modal/Modal";
     .title {
       color: red;
     }
-  `;
-  const close = () => {
-      const parent = document.body
-      const modals = document.querySelector('.dialog-modal')
-      console.log('关闭按钮', modals)
-      // modals.length = 0
-      parent.removeChild(modals)
+  `
+  interface Modal  {
+    show: Function
   }
-  const modalContent = (
-    <Dialog className="dialog-modal">
-      <div className="dialog-title">111111</div>
-      <div className="dialog-contaoner">22222</div>
-      <div className="dialog-foooter"><Button onClick={close}>关闭</Button></div>
-    </Dialog>
-  );
-  // ReactDOM.createPortal(modalContent, document.getElementById("root"))
-// };
-interface Modal  {
-  show: Function
+const ModalDialog : Modal = {
+   show: ()=>{}
 }
-const ModalDialog = {}
-ModalDialog.show = (values: any) => {
- console.log('values', values)
- const newContainer = document.getElementById('root')
- ReactDOM.render(modalContent, newContainer)
-// return createPortal(<div>111111111111</div>, newContainer)
+ModalDialog.show = (props: any) => {
+  console.log('props', props)
+  const { title, content, type, ok, cancel } = props
+  const close = (container: Element) => {
+    container.remove()
+    props.cancel()
+}
+const affirm = (props: any) => {
+  console.log('点击了确认', props)
+  props.ok()
+}
+const div = document.createElement('div')
+div.className = 'dialog-modal'  
+document.body.appendChild(div)
+const modalContent = (
+  <Dialog>
+    <div className="dialog-title">{title}</div>
+    <div className="dialog-contaoner">{content}</div>
+    <div className="dialog-foooter">
+      <Button onClick={()=>close(div)}>关闭</Button>
+      <Button onClick={()=> affirm(props)}>确认</Button>
+    </div>
+  </Dialog>
+);  
+
+ ReactDOM.render(modalContent, div)
 }
 
 export default ModalDialog;
