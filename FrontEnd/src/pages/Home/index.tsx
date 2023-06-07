@@ -1,7 +1,7 @@
 import React from "react";
 import {Tabs} from 'antd'
-import SocialCircle from "@/view/SocialCircle";
-import TreeOrgination from "@/view/TreeOrgination";
+import SocialCircle from "@/pages/SocialCircle";
+import TreeOrgination from "@/pages/TreeOrgination";
 import Drag from "@/component/Drag";
 const Home: React.FC = () => {
     return (

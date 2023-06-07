@@ -5,7 +5,7 @@ import React from "react";
 import {NavLink, useNavigate} from "react-router-dom";
 import {useSelector, useDispatch} from "react-redux"
 
-export default function Login(props: any){
+export default function Login(props: any){ 
     const navigate = useNavigate()
     const {value} = useSelector((store)=> store.counter)
     const dispatch = useDispatch()

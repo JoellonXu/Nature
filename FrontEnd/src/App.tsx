@@ -2,9 +2,9 @@ import React, {Suspense} from 'react'
 import {Button, Form, Spin} from "antd";
 import {Routes, Route, useRoutes} from "react-router-dom";
 import { BrowserRouter } from 'react-router-dom';
-import Login from "@/view/Login/Login";
-import NotFound from "@/view/NotFound";
-import Home from "@/view/Home";
+import Login from "@/pages/Login/Login";
+import NotFound from "@/pages/NotFound";
+import Home from "@/pages/Home";
 import routes from '../config/routes';
 export const lazyLoad = (Comp: React.LazyExoticComponent<any>): React.ReactNode => {
         return  (
@@ -24,26 +24,32 @@ export const lazyLoad = (Comp: React.LazyExoticComponent<any>): React.ReactNode 
             </Suspense>
         )
 }
+interface routerType  {
+    path: string,
+    component: string,
+    name: string,
+    children?: routerType
+}
 function App() {
     // 获取路由
-    const getRouter = (routes: object[]) => {
-           routes.forEach((item)=>{
-            if(Object.hasOwn(item, 'children') && item.children.length){
-                
-            }
-           })
+    const router: any[] = []
+    const getRouter = (routes: routerType[]) => {
+      for(let i = 0; i< routes.length; i++){
+         router[i] = {
+            path: routes[i].path,
+            name: routes[i].name || '',
+            element: lazyLoad(React.lazy(()=> import(`./${routes[i].component}`))),
+            childrem: routes[i].children || []
+         }
+         if(Object.hasOwn(routes[i], 'children')){
+          // @ts-ignore
+            getRouter(routes[i].children)
+         }
+      }
+      return router
     }
-  
-    console.log('routes', routes)
- const route =  routes.map(item=>(
-        {
-           path: item.path,
-           name: item.name,
-           element: lazyLoad( React.lazy(()=> import(`./${item.component}`)))
-        }
- ))
- console.log('route!', route)
- const renderRoute = useRoutes(route)
+          // @ts-ignore
+ const renderRoute = useRoutes(getRouter(routes))
     return (
         <div className='APP'>
          {renderRoute}

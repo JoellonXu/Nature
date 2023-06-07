@@ -6,4 +6,5 @@ export default (app: Application) => {
   router.get('/login/find', controller.login.getParam)
   router.post('/api/articleList', controller.homePage.article.articleList)
   router.post('/api/treeDataList', controller.homePage.treeDataList.treeDataList)
+  router.post('/api/accessMap', controller.accessMap.access.accessMap)
 };
