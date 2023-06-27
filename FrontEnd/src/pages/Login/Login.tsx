@@ -3,12 +3,10 @@ import axios from "axios";
 import {Get} from "@/api/server"
 import React from "react";
 import {NavLink, useNavigate} from "react-router-dom";
-import {useSelector, useDispatch} from "react-redux"
-
 export default function Login(props: any){ 
     const navigate = useNavigate()
-    const {value} = useSelector((store)=> store.counter)
-    const dispatch = useDispatch()
+    // const {value} = useSelector((store)=> store.counter)
+    // const dispatch = useDispatch()
     const onFinish = (value:any)=>{
     console.log(value)
     Get('api/login', {
@@ -16,7 +14,7 @@ export default function Login(props: any){
             password: value.password
     }).then((res)=>{
       if(res.errno === 0 && res.res.token){
-       dispatch(setToken({value: res.res.token}))
+    //    dispatch(setToken({value: res.res.token}))
        navigate('/home')
       }   
     })
