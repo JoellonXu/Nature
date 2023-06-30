@@ -1,8 +1,9 @@
 export default [
     {
         path: '/',
-        component: 'pages/Home',
-        access: 'HOME'
+        component: 'pages/WorkSpace',
+        access: 'HOME',
+        name: 'WorkSpace'
     },
     {
         path: '/home',

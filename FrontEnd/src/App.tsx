@@ -1,10 +1,6 @@
 import React, {Suspense} from 'react'
-import {Button, Form, Spin} from "antd";
-import {Routes, Route, useRoutes} from "react-router-dom";
-import { BrowserRouter } from 'react-router-dom';
-import Login from "@/pages/Login/Login";
-import NotFound from "@/pages/NotFound";
-import Home from "@/pages/Home";
+import {Spin} from "antd";
+import {useRoutes} from "react-router-dom";
 import routes from '../config/routes';
 export const lazyLoad = (Comp: React.LazyExoticComponent<any>): React.ReactNode => {
         return  (
@@ -27,13 +23,12 @@ export const lazyLoad = (Comp: React.LazyExoticComponent<any>): React.ReactNode 
 interface routerType  {
     path: string,
     component: string,
-    name: string,
-    children?: routerType
+    name?: string,
+    children?: Array<routerType>
 }
 function App() {
     // 获取路由
-    const router: any[] = []
-    const getRouter = (routes: routerType[]) => {
+    const getRouter = (routes: routerType[], router: any[]) => {
       for(let i = 0; i< routes.length; i++){
          router[i] = {
             path: routes[i].path,
@@ -42,14 +37,13 @@ function App() {
             childrem: routes[i].children || []
          }
          if(Object.hasOwn(routes[i], 'children')){
-          // @ts-ignore
-            getRouter(routes[i].children)
+            // @ts-ignore
+            getRouter(routes[i].children, router[i])
          }
       }
       return router
     }
-          // @ts-ignore
- const renderRoute = useRoutes(getRouter(routes))
+ const renderRoute = useRoutes(getRouter(routes, []))
     return (
         <div className='APP'>
          {renderRoute}
